@@ -729,6 +729,29 @@ int Passenger_compararXestado(void* paxUno, void* paxDos){
 		}
   return retorno;
 }
+int Passenger_compararXid(void* paxUno, void* paxDos){
+
+	int retorno=0;
+	Passenger* primerPax;
+	Passenger* segundoPax;
+	int primerID;
+	int segundoID;
+
+	if (paxUno != NULL && paxDos != NULL) {
+			primerPax = (Passenger*) paxUno;
+			segundoPax = (Passenger*) paxDos;
+			Passenger_getId(primerPax,&primerID);
+			Passenger_getId(segundoPax,&segundoID);
+			if(primerID > segundoID){
+					retorno=1;
+				}
+			else if(primerID < segundoID){
+
+					retorno=-1;
+				}
+		}
+	return retorno;
+}
 
 
 void menuSort(){
@@ -738,7 +761,8 @@ void menuSort(){
 				"2. Apellido \n"
 				"3. Precio \n"
 				"4. Tipo de pasajero\n"
-				"5. Estado de vuelo\n");
+				"5. Estado de vuelo\n"
+				"6. Id\n");
 }
 
 

@@ -72,7 +72,7 @@ int controller_editPassenger(LinkedList* pArrayListPassenger){
 
 		if(pArrayListPassenger != NULL){
 
-			validar=pedirNumero(&idAbuscar, "Ingrese el numero de id del pasajero a modifica \n", "Error! dato invalido", 1, 1000, 2);
+			validar=pedirNumero(&idAbuscar, "Ingrese el numero de id del pasajero a modifica \n", "Error! dato invalido", 1, 10000000, 2);
 			if(validar==0){
 
 				indiceEncontrado=findPassengerById(pArrayListPassenger,idAbuscar);
@@ -174,7 +174,7 @@ int controller_ListPassenger(LinkedList* pArrayListPassenger){
 
 		if(pArrayListPassenger!=NULL){
 			size=ll_len(pArrayListPassenger);
-			printf("--id---Nombre---Apellido---Precio---Codigo de vuelo---Tipo de pasajero---Estado de vuelo--\n");
+			printf("id---Nombre----Apellido---------Precio--------Codigo de vuelo-----Tipo de pasajero-----Estado de vuelo--\n");
 			for(int i=0;i<size;i++){
 				auxPax=(Passenger*)ll_get(pArrayListPassenger, i);
 				mostrarUnPax(auxPax);
@@ -200,7 +200,7 @@ int controller_sortPassenger(LinkedList* pArrayListPassenger){
 	if(validarIsEmpty== 0){
 		if(pArrayListPassenger != NULL){
 		menuSort();
-		validar= pedirNumero(&opcion,"Ingrese la opcion\n","Error opcion incorrecta \n",1,5,2);
+		validar= pedirNumero(&opcion,"Ingrese la opcion\n","Error opcion incorrecta \n",1,6,2);
 		if(validar==0){
 
 			pedirNumero(&orden,"Desea ordenar de manera  descendente (ingrese 0) o ascendente (ingrese 1)\n","Error orden incorrecto \n",0,1,2);
@@ -225,6 +225,10 @@ int controller_sortPassenger(LinkedList* pArrayListPassenger){
 					break;
 				case 5:
 					ll_sort(pArrayListPassenger, Passenger_compararXtipo, orden);
+					retorno=0;
+					break;
+				case 6:
+					ll_sort(pArrayListPassenger, Passenger_compararXid, orden);
 					retorno=0;
 					break;
 			}

@@ -30,7 +30,7 @@
      9. Guardar los datos de los pasajeros en el archivo data.csv (modo binario).
     10. Salir
 *****************************************************/
-
+/////ultimo///
 
 
 int main()
@@ -106,7 +106,7 @@ int main()
 
 					if(controller_editPassenger(listaPasajeros)==0){
 						printf("El pasajero se modifico correctamente\n");
-						flagMenu=1;
+
 					}
 					else{
 						printf("El pasajero no se modifico\n");
@@ -116,7 +116,7 @@ int main()
 					if(controller_removePassenger(listaPasajeros)==0){
 
 							printf("El pasajero se dio de baja correctamente\n");
-							flagMenu=1;
+
 						}
 						else{
 							printf("El pasajero no se pudo dar de baja\n");
@@ -128,8 +128,7 @@ int main()
 						}
 						else{
 							printf("Debe cargar el archivo primero\n");
-							flagMenu=1;
-						}
+							}
 
 					break;
 				case 7:
@@ -137,8 +136,7 @@ int main()
 						if(controller_sortPassenger(listaPasajeros)==0){
 							printf("Pasajeros ordenados\n");
 							controller_ListPassenger(listaPasajeros);
-							flagMenu=1;
-						}
+													}
 						else{
 							printf("No se pudo ordenar los pasajeros\n");
 						}
@@ -151,7 +149,7 @@ int main()
 
 							printf("El archivo se guardo exitosamente\n");
 
-							flagMenu=1;
+							flagMenu=2;
 						}
 						else{
 							printf("No se pudo guard\n");
@@ -167,20 +165,26 @@ int main()
 						if(controller_saveAsBinary("data.bin", listaPasajeros)==0
 							&& controller_saveAsText("data.csv",listaPasajeros)==0){
 							printf("El archivo se guardo en binario correctamente\n");
-							flagMenu=1;
+							flagMenu=3;
 						}
 						else{
-							printf("No se pudo cargar el archivo \n");
+							printf("No se pudo cargar el archivo dos veces \n");
 						}
 					}
 					break;
 				case 10:
+					if(flagMenu== 2 || flagMenu== 3){
 					pedirNumero(&confirmaSalir, "Desea salir del programa?\n 1.si\n 2.no \n", "Opcion incorrecta!\n", 1, 2, 3);
 					if(confirmaSalir ==1){
 
 						ll_deleteLinkedList(listaPasajeros);
+						printf("Gracias por usar Smart Travel");
+					}
+					}else{
+						printf("Primero debe guardar los cambios\n");
 					}
 					break;
+
 
 			}
     	}

@@ -123,6 +123,7 @@ int buscarUltimoID(LinkedList* pArrayListPassenger);
 ///
 /// @param pArrayListPassenger
 /// @return
+
 int generarNuevoId(LinkedList* pArrayListPassenger);
 /// @fn carga un nuevo pasajero con todos sus atributos
 /// @brief
@@ -186,6 +187,7 @@ int Passenger_compararXestado(void* paxUno, void* paxDos);
 /// @fn void menuSort()
 /// @brief
 ///
+int Passenger_compararXid(void* paxUno, void* paxDos);
 void menuSort();
 
 #endif /* PASSENGER_H_ */

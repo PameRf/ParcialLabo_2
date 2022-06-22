@@ -378,16 +378,64 @@ int buscarUltimoID(LinkedList* pArrayListPassenger){
 	}
 	return retorno;
 }
+int ObtenerUltimoId(char* path,char* idUltimo){
+
+	int retorno=-1;
+
+	FILE* archivo;
+
+	archivo=fopen(path,"r");
+
+	if(archivo != NULL && idUltimo > 0){
+		fscanf(archivo,"%[^\n]\n",idUltimo);
+		retorno=0;
+	}
+	fclose(archivo);
+	return retorno;
+
+}
+
+int GuardarUltimoId(char* path, char* idUltimo){
+
+	int retorno=-1;
+
+	FILE* archivo;
+
+	archivo=fopen(path,"w");
+
+	if(archivo != NULL && idUltimo != NULL){
+		fprintf(archivo,"%s",idUltimo);
+		retorno=0;
+	}
+	fclose(archivo);
+	return retorno;
+
+}
 
 int generarNuevoId(LinkedList* pArrayListPassenger){
 
 	int idPasajero = 0;
+	char auxId[10];
+	int validar;
+	int idborrado;
 
 	if(pArrayListPassenger !=NULL){
 		idPasajero=buscarUltimoID(pArrayListPassenger);
+		printf("id encontrado en mayor %d \n",idPasajero);
+		validar=ObtenerUltimoId("ultimoId.csv", auxId);
+		printf("id char %s\n",auxId);
+		if(validar ==0){
+		 idborrado=atoi(auxId);
+		 if(idborrado > idPasajero){
+			 idPasajero=idborrado;
+		 }
+		}
+
 		if(idPasajero > 0){
 	    idPasajero++;
+	    printf("valor de id num %d'n",idPasajero);
 		}
+
 		else{
 			idPasajero=1001;
 		}

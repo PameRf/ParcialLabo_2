@@ -107,6 +107,8 @@ int controller_removePassenger(LinkedList* pArrayListPassenger){
 	int validar;
 	int opcion;
 	int validarIsEmpty;
+	char auxid[10];
+
 
 	validarIsEmpty= ll_isEmpty(pArrayListPassenger);
 	if(validarIsEmpty== 0){
@@ -123,7 +125,10 @@ int controller_removePassenger(LinkedList* pArrayListPassenger){
 
 						mostrarUnPax(auxPax);
 						validar=pedirNumero(&opcion,"Esta seguro que quiere dar de baja al pasajero, indique 1(si) o 2(no)\n", "Error! opcion invalida", 1, 2, 2);
-						if(validar==0 && opcion){
+						if(validar==0 && opcion==1){
+
+						itoa(idBuscar,auxid,10);
+						GuardarUltimoId("ultimoId.csv", auxid);
 						ll_remove(pArrayListPassenger,indiceEncontrado);
 						Passenger_delete(auxPax);
 						retorno=0;

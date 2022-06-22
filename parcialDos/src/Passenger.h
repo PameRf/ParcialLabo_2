@@ -123,7 +123,8 @@ int buscarUltimoID(LinkedList* pArrayListPassenger);
 ///
 /// @param pArrayListPassenger
 /// @return
-
+int ObtenerUltimoId(char* path, char* idUltimo);
+int GuardarUltimoId(char* path, char* idUltimo);
 int generarNuevoId(LinkedList* pArrayListPassenger);
 /// @fn carga un nuevo pasajero con todos sus atributos
 /// @brief

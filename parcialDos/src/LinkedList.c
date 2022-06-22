@@ -375,7 +375,7 @@ int ll_push(LinkedList* this, int index, void* pElement)
 
     if(this != NULL && index >= 0 && index <= ll_len(this)){
 
-    	returnAux=addNode(this,index, pElement);
+    	returnAux=addNode(this,index, pElement);// llama a la funcion add Node y agrega el elemene a la lista en la posicion eindicada(add se encargard de crear el nuevo nodo)
 
     }
     return returnAux;
@@ -396,9 +396,9 @@ void* ll_pop(LinkedList* this,int index)
 
     if(this != NULL && index >= 0 && index < ll_len(this)){
 
-    	returnAux=ll_get(this, index);
+    	returnAux=ll_get(this, index);// retorna el puntero al elemento q quiero eliminar
 
-    	ll_remove(this, index);
+    	ll_remove(this, index);// desp lo elimino
 
     }
     return returnAux;
@@ -447,10 +447,10 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
     if(this != NULL && this2 != NULL){
     	size=ll_len(this2);
     	returnAux=1;
-    	for(int i=0; i<size; i++){
+    	for(int i=0; i<size; i++){// recorro la segunda
 
-    		pElement=ll_get(this2, i);
-    		if(ll_contains(this, pElement)==0){
+    		pElement=ll_get(this2, i); // tomo cada elemento
+    		if(ll_contains(this, pElement)==0){// pregunto si ese elemento esta en this1(direcciones de memoria)
     			returnAux=0;
     			break;
     		}
@@ -476,11 +476,11 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
     void* pAuxElement=NULL;
 
     if(this != NULL && from >=0  && from < ll_len(this) && to >from && to <= ll_len(this)){
-    	clonesublista=ll_newLinkedList();
+    	clonesublista=ll_newLinkedList();// creo la sublist
     	if(clonesublista != NULL){
-    		for(int i=from;i < to; i++){
-    			pAuxElement=ll_get(this, i);
-    			ll_add(clonesublista, pAuxElement);
+    		for(int i=from;i < to; i++){// y recorro del from hasta to sin incluirlo
+    			pAuxElement=ll_get(this, i);// tomo el direcc del elemente
+    			ll_add(clonesublista, pAuxElement);//agrego el elemento a la nueva lista
     		}
     	}
     }
@@ -500,7 +500,7 @@ LinkedList* ll_clone(LinkedList* this)
 {
     LinkedList* clone = NULL;
     if(this !=NULL){
-    	clone= ll_subList(this, 0, ll_len(this));
+    	clone= ll_subList(this, 0, ll_len(this));// copio la lista entera
     }
 
     return clone;
@@ -508,12 +508,13 @@ LinkedList* ll_clone(LinkedList* this)
 
 
 /** \brief Ordena los elementos de la lista utilizando la funcion criterio recibida como parametro
+ * (retorna <0 si el primero es mayor q el de la segundo , mayor a >0 si el segundo es mayor q el primero y 0 si son iguales
  * \param pList LinkedList* Puntero a la lista
  * \param pFunc (*pFunc) Puntero a la funcion criterio
  * \param order int  [1] Indica orden ascendente - [0] Indica orden descendente
  * \return int Retorna  (-1) Error: si el puntero a la listas es NULL
                                 ( 0) Si ok
- */
+ *///>0 y 1 ascendente// <0 y 0 desendete
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
     int returnAux =-1;
@@ -529,11 +530,12 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     		size--;
 
     		for(int i= 0; i< size; i++){
-    			pAuxElement=ll_get(this, i);
-    			pAuxElementDos=ll_get(this, i+1);
+    			pAuxElement=ll_get(this, i);// obtengo el elemento
+    			pAuxElementDos=ll_get(this, i+1);// obtengo el elemento de la posicion siguiente
     			if((pFunc(pAuxElement,pAuxElementDos)> 0 && order ==1)||(pFunc(pAuxElement,pAuxElementDos) < 0 && order == 0)){
-					ll_set(this, i, pAuxElementDos);
-					ll_set(this, i+1, pAuxElement);
+					//pfuc me dice q el segundo elemeto es mayor
+    				ll_set(this, i, pAuxElementDos);// coloco la direcc de memoria del elemento dos a i
+					ll_set(this, i+1, pAuxElement);//coloco la direcc de memoria del elemento uno en la posicion siguiente
     				estaOrdenado=0;
     			}
        		}

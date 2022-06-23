@@ -421,9 +421,9 @@ int generarNuevoId(LinkedList* pArrayListPassenger){
 
 	if(pArrayListPassenger !=NULL){
 		idPasajero=buscarUltimoID(pArrayListPassenger);
-		printf("id encontrado en mayor %d \n",idPasajero);
+		//printf("id encontrado en mayor %d \n",idPasajero);
 		validar=ObtenerUltimoId("ultimoId.csv", auxId);
-		printf("id char %s\n",auxId);
+		//printf("id char %s\n",auxId);
 		if(validar ==0){
 		 idborrado=atoi(auxId);
 		 if(idborrado > idPasajero){
@@ -433,7 +433,7 @@ int generarNuevoId(LinkedList* pArrayListPassenger){
 
 		if(idPasajero > 0){
 	    idPasajero++;
-	    printf("valor de id num %d'n",idPasajero);
+	    //printf("valor de id num %d'n",idPasajero);
 		}
 
 		else{

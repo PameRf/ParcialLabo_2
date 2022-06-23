@@ -59,11 +59,11 @@ static Node* getNode(LinkedList* this, int nodeIndex)
 	Node* pNode=NULL;
 
 	if(this != NULL && nodeIndex >= 0 && nodeIndex < ll_len(this)){
-		pNode= this->pFirstNode;//asigno la direc de memoria de pfirsNode para luego iterar
+		pNode= this->pFirstNode;
 
-		for(int i=0; i< nodeIndex; i++){// tomo indice para que me recorra y tome la direcc de memoria del indice q le paso como parametro
+		for(int i=0; i< nodeIndex; i++){
 
-			pNode=pNode->pNextNode;// accedo al Nodo siguiente porq en p Node estoy parado en el nodo (si quiero el 3 recorro hasta es dos q tiene el puntero del siguiente)
+			pNode=pNode->pNextNode;
 		}
 	}
     return pNode;
@@ -99,26 +99,23 @@ static int addNode(LinkedList* this, int nodeIndex,void* pElement)
     Node* auxNode=NULL;
 
     if(this != NULL && nodeIndex >= 0 && nodeIndex <= ll_len(this)){
-    	unNodoNuevo= (Node*)malloc(sizeof(Node));// malloc xq agrego un nodo nuevo
+    	unNodoNuevo= (Node*)malloc(sizeof(Node));
 
     	if(unNodoNuevo != NULL){
 
     		if(nodeIndex== 0){
 
-    			//linea 110 el primer nodo pasa a ser el siguiente
-    			//linea 112 el nodo que agregas pasa a ser el primero
-    			unNodoNuevo->pNextNode=this->pFirstNode;// asigno a p next node la direccion de memoria de p first node (anterior)
-    			// le asigno                 //null
-    			this->pFirstNode=unNodoNuevo;// y ahora mi pfirst node apunta a mi nuevo nodo creado
-    			unNodoNuevo->pElement=pElement;// le asigno el puntero al elemento a mi nuevo noso
-    			this->size++; // aumento el size porq agregue un nodo
+    			unNodoNuevo->pNextNode=this->pFirstNode;
+    			this->pFirstNode=unNodoNuevo;
+    			unNodoNuevo->pElement=pElement;
+    			this->size++;
     			returnAux=0;
     		}
-    		else{//ultimo elemento o el del medio
-    			 auxNode=getNode(this, nodeIndex -1);// obtengo axuobtengo el nodo anterior q tiene la direccion de memoria del next node
+    		else{
+    			 auxNode=getNode(this, nodeIndex -1);
     			 if(auxNode !=NULL){
-    				 unNodoNuevo->pNextNode= auxNode->pNextNode;// a mi nuvo nodo (next node) le asigno la direc de nex node q tenia me nodo anterior
-    				 auxNode->pNextNode= unNodoNuevo;//y a mi nodo anterior  (next node) le asigno mi nuevo nodo
+    				 unNodoNuevo->pNextNode= auxNode->pNextNode;
+    				 auxNode->pNextNode= unNodoNuevo;
 
     				 unNodoNuevo->pElement=pElement;
 					 this->size++;
@@ -160,7 +157,7 @@ int ll_add(LinkedList* this, void* pElement)
 
     if(this != NULL){
 
-    	returnAux=addNode(this,ll_len(this),pElement);//le paso como indice el len porq agrego uno mas al final
+    	returnAux=addNode(this,ll_len(this),pElement);
 
     }
 
@@ -182,9 +179,9 @@ void* ll_get(LinkedList* this, int index)
 
     if(this !=NULL && index >=0 && index < ll_len(this)){
 
-    	pNode=getNode(this, index);// llamo a get node para almacenar el pNode la direcc de memoria del nodo y acceder al elemento
+    	pNode=getNode(this, index);
     	if(pNode != NULL){
-    	returnAux=pNode->pElement;// retorno el elemento
+    	returnAux=pNode->pElement;
 
     	}
     }
@@ -237,19 +234,19 @@ int ll_remove(LinkedList* this,int index)
 
         if(this != NULL && index >= 0 && index < ll_len(this)){
 
-        	auxNode=getNode(this, index);// obtengo el nodo q quiero borra para obtener el next node (direccion de memo del proximo)
+        	auxNode=getNode(this, index);
 
         	if(auxNode != NULL){
 
         		if(index== 0){
 
-        		this->pFirstNode= auxNode->pNextNode;// le asigno a pfirst node la direc de memoria de next node q tenia el nodo a eliminar
+        		this->pFirstNode= auxNode->pNextNode;
 
         		}
-        		else{// si no es el primero uso un aux para guardarme el nodo anterior al q quiero borrar
+        		else{
         			pAuxNodeDos=getNode(this, index -1);
         			 if(pAuxNodeDos !=NULL){
-        				 pAuxNodeDos->pNextNode=auxNode->pNextNode;// le asigno nex node de q vamosa a borrar al next node del indice anterior
+        				 pAuxNodeDos->pNextNode=auxNode->pNextNode;
 
         			 }
         		}
@@ -375,7 +372,7 @@ int ll_push(LinkedList* this, int index, void* pElement)
 
     if(this != NULL && index >= 0 && index <= ll_len(this)){
 
-    	returnAux=addNode(this,index, pElement);// llama a la funcion add Node y agrega el elemene a la lista en la posicion eindicada(add se encargard de crear el nuevo nodo)
+    	returnAux=addNode(this,index, pElement);
 
     }
     return returnAux;
@@ -396,9 +393,9 @@ void* ll_pop(LinkedList* this,int index)
 
     if(this != NULL && index >= 0 && index < ll_len(this)){
 
-    	returnAux=ll_get(this, index);// retorna el puntero al elemento q quiero eliminar
+    	returnAux=ll_get(this, index);
 
-    	ll_remove(this, index);// desp lo elimino
+    	ll_remove(this, index);
 
     }
     return returnAux;
@@ -447,10 +444,10 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
     if(this != NULL && this2 != NULL){
     	size=ll_len(this2);
     	returnAux=1;
-    	for(int i=0; i<size; i++){// recorro la segunda
+    	for(int i=0; i<size; i++){
 
-    		pElement=ll_get(this2, i); // tomo cada elemento
-    		if(ll_contains(this, pElement)==0){// pregunto si ese elemento esta en this1(direcciones de memoria)
+    		pElement=ll_get(this2, i);
+    		if(ll_contains(this, pElement)==0){
     			returnAux=0;
     			break;
     		}
@@ -476,11 +473,11 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
     void* pAuxElement=NULL;
 
     if(this != NULL && from >=0  && from < ll_len(this) && to >from && to <= ll_len(this)){
-    	clonesublista=ll_newLinkedList();// creo la sublist
+    	clonesublista=ll_newLinkedList();
     	if(clonesublista != NULL){
-    		for(int i=from;i < to; i++){// y recorro del from hasta to sin incluirlo
-    			pAuxElement=ll_get(this, i);// tomo el direcc del elemente
-    			ll_add(clonesublista, pAuxElement);//agrego el elemento a la nueva lista
+    		for(int i=from;i < to; i++){
+    			pAuxElement=ll_get(this, i);
+    			ll_add(clonesublista, pAuxElement);
     		}
     	}
     }
@@ -500,7 +497,7 @@ LinkedList* ll_clone(LinkedList* this)
 {
     LinkedList* clone = NULL;
     if(this !=NULL){
-    	clone= ll_subList(this, 0, ll_len(this));// copio la lista entera
+    	clone= ll_subList(this, 0, ll_len(this));
     }
 
     return clone;
@@ -530,12 +527,11 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     		size--;
 
     		for(int i= 0; i< size; i++){
-    			pAuxElement=ll_get(this, i);// obtengo el elemento
-    			pAuxElementDos=ll_get(this, i+1);// obtengo el elemento de la posicion siguiente
+    			pAuxElement=ll_get(this, i);
+    			pAuxElementDos=ll_get(this, i+1);
     			if((pFunc(pAuxElement,pAuxElementDos)> 0 && order ==1)||(pFunc(pAuxElement,pAuxElementDos) < 0 && order == 0)){
-					//pfuc me dice q el segundo elemeto es mayor
-    				ll_set(this, i, pAuxElementDos);// coloco la direcc de memoria del elemento dos a i
-					ll_set(this, i+1, pAuxElement);//coloco la direcc de memoria del elemento uno en la posicion siguiente
+					ll_set(this, i, pAuxElementDos);
+					ll_set(this, i+1, pAuxElement);
     				estaOrdenado=0;
     			}
        		}

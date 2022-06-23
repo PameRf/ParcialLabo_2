@@ -106,8 +106,17 @@ int convertirTipoAentero(char* tipoPasajero);
 /// @param estadoVuelo
 /// @return
 int convertirEstadoAentero(char* estadoVuelo);
-//
+/// @brief convierte el tipo de vuelo de int a caracteres
+///
+/// @param tipoPasajero
+/// @param tipoPasajeroStr
+/// @return
 int convertirTipoAcaracteres(int tipoPasajero, char* tipoPasajeroStr);
+/// @brief convierte el estado de vuelo de int a caracteres
+///
+/// @param estadoVuelo
+/// @param estadoVueloStr
+/// @return
 int convertirEstadoAcaracteres(int estadoVuelo, char* estadoVueloStr);
 
 /// @fn int buscar el id mayor de la lista
@@ -116,15 +125,25 @@ int convertirEstadoAcaracteres(int estadoVuelo, char* estadoVueloStr);
 /// @param pArrayListPassenger
 /// @return
 int buscarUltimoID(LinkedList* pArrayListPassenger);
+/// @brief lee el archivo para obtener el id borrado
+///
+/// @param path
+/// @param idUltimo
+/// @return
+int ObtenerUltimoId(char* path, char* idUltimo);
+/// @brief abre el archivo y escribe el id eliminado
+///
+/// @param path
+/// @param idUltimo
+/// @return
+int GuardarUltimoId(char* path, char* idUltimo);
 /// @fn int generar el proximo id a asignar al nuevo pax
-/// esta funcion llama a buscarUltimoID
+/// esta funcion llama a buscarUltimoID y obtener ultimo id para comparar lo con el eliminado
 ///
 /// /// @brief
 ///
 /// @param pArrayListPassenger
 /// @return
-int ObtenerUltimoId(char* path, char* idUltimo);
-int GuardarUltimoId(char* path, char* idUltimo);
 int generarNuevoId(LinkedList* pArrayListPassenger);
 /// @fn carga un nuevo pasajero con todos sus atributos
 /// @brief

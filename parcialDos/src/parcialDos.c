@@ -30,7 +30,7 @@
      9. Guardar los datos de los pasajeros en el archivo data.csv (modo binario).
     10. Salir
 *****************************************************/
-/////ultimo///
+/////ultimo para parcial///
 
 
 int main()

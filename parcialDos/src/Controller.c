@@ -318,4 +318,59 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
     return retorno;
 }
 
+int controller_filter(LinkedList* pArrayListPassenger){
+
+	int retorno=-1;
+	LinkedList* nuevaList=NULL;
+
+	if(pArrayListPassenger != NULL){
+
+		nuevaList=ll_filter(pArrayListPassenger, buscarPaxXTipo);
+		if(nuevaList != NULL){
+
+			controller_saveAsText("Pasajeros de FirstClass.csv", nuevaList);
+			ll_deleteLinkedList(nuevaList);
+			retorno=0;
+		}
+	}
+	return retorno;
+}
+
+int controller_ContadorClase(LinkedList* this){
+
+	int retorno=-1;
+	int validar;
+	int opcion;
+	int resultado;
+
+		if(this != NULL){
+
+			validar= pedirNumero(&opcion,"Ingrese la opcion de tipo de pax que desea contar\n","Error opcion incorrecta \n",1,3,2);
+					if(validar==0){
+
+						switch(opcion){
+							case 1:
+								resultado=ll_count(this, BuscarFirstClass);
+								printf("La cantidad de pasajeros de First Class es %d\n",resultado);
+								retorno=0;
+								break;
+							case 2:
+								resultado=ll_count(this, BuscarExecutiveClass);
+								printf("La cantidad de pasajeros de Executive es %d \n",resultado);
+								retorno=0;
+								break;
+							case 3:
+								resultado=ll_count(this, BuscarEconomyClass);
+								printf("La cantidad de pasajeros de Economy es %d\n",resultado);
+								retorno=0;
+								break;
+
+			}
+					}
+		}
+		return retorno;
+}
+
+
+
 

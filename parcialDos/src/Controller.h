@@ -77,4 +77,6 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger);
 /// @return
 int controller_removeList(LinkedList* pArrayListPassenger);
 
+int controller_filter(LinkedList* pArrayListPassenger);
+int controller_ContadorClase(LinkedList* this);
 

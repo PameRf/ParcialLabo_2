@@ -801,6 +801,83 @@ int Passenger_compararXid(void* paxUno, void* paxDos){
 	return retorno;
 }
 
+int buscarPaxXTipo(void* this){
+
+	int retorno=0;
+	Passenger* AuxPax=NULL;
+	int auxTipo;
+
+
+
+	if(this !=NULL){
+
+			AuxPax=(Passenger*)this;
+		if(Passenger_getTipoPasajero(AuxPax, &auxTipo)==0 && auxTipo== 1){
+
+			retorno=1;
+		}
+   	}
+	return retorno;
+}
+
+int BuscarFirstClass(void* this){
+
+	int retorno=0;
+	Passenger* AuxPax=NULL;
+	int tipoFirst;
+
+
+	if(this !=NULL){
+
+		AuxPax=(Passenger*)this;
+
+		if(Passenger_getTipoPasajero(AuxPax, &tipoFirst)==0 && tipoFirst== 1){
+
+			retorno=1;
+		}
+   	}
+	return retorno;
+}
+
+int BuscarExecutiveClass(void* this){
+
+	int retorno=0;
+	Passenger* AuxPax=NULL;
+	int Executive;
+
+
+	if(this !=NULL){
+
+		AuxPax=(Passenger*)this;
+
+		if(Passenger_getTipoPasajero(AuxPax, &Executive)==0 && Executive== 2){
+
+			retorno=1;
+		}
+   	}
+	return retorno;
+}
+
+int BuscarEconomyClass(void* this){
+
+	int retorno=0;
+	Passenger* AuxPax=NULL;
+	int Economy;
+
+
+	if(this !=NULL){
+
+		AuxPax=(Passenger*)this;
+
+		if(Passenger_getTipoPasajero(AuxPax, &Economy)==0 && Economy== 3){
+
+			retorno=1;
+		}
+   	}
+	return retorno;
+}
+
+
 
 void menuSort(){
 
@@ -811,6 +888,14 @@ void menuSort(){
 				"4. Tipo de pasajero\n"
 				"5. Estado de vuelo\n"
 				"6. Id\n");
+}
+
+void menuInformes(){
+
+	printf("Elija la opcion que desea informar: \n"
+				"1. Pasajeros por clase \n"
+				"2. Generar archivo de vuelos \n"
+				"3. Calcular millas acumuladas \n");
 }
 
 

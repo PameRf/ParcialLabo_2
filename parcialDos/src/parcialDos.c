@@ -30,7 +30,7 @@
      9. Guardar los datos de los pasajeros en el archivo data.csv (modo binario).
     10. Salir
 *****************************************************/
-/////ultimo para parcial///
+/////ultimo con informes///
 
 
 int main()
@@ -40,6 +40,8 @@ int main()
     int validarMenu;
     int flagMenu=0;
     int confirmaSalir=0;
+    int submenu;
+    int validar;
 
 
     LinkedList* listaPasajeros = ll_newLinkedList();
@@ -56,10 +58,11 @@ int main()
     	printf("7. Ordenar pasajeros\n");
     	printf("8. Guardar los datos de los pasajeros en el archivo data.csv (modo texto).\n");
     	printf("9. Guardar los datos de los pasajeros en el archivo data.csv (modo binario).\n");
-    	printf("10.Salir\n");
+    	printf("10.Lista de informes\n");
+    	printf("11.Salir\n");
 
 
-    	validarMenu=pedirNumero(&option, "Ingrese una opcion \n","Error! opcion invalida\n", 1, 10,2);
+    	validarMenu=pedirNumero(&option, "Ingrese una opcion \n","Error! opcion invalida\n", 1, 11,2);
 
     	if(validarMenu==0){
 			switch(option)
@@ -173,6 +176,19 @@ int main()
 					}
 					break;
 				case 10:
+					menuInformes();
+					pedirNumero(&submenu,"Elija una opcion a mostrar 1 o 2\n","Error opcion invalida\n", 1, 2, 3);
+					if(submenu == 1){
+					controller_ContadorClase(listaPasajeros);
+					}
+					else{
+						validar=controller_filter(listaPasajeros);
+						if(validar==0){
+							printf("Se pudo cargar la lista de first Class\n");
+						}
+					}
+					break;
+				case 11:
 					if(flagMenu== 2 || flagMenu== 3){
 					pedirNumero(&confirmaSalir, "Desea salir del programa?\n 1.si\n 2.no \n", "Opcion incorrecta!\n", 1, 2, 3);
 					if(confirmaSalir ==1){

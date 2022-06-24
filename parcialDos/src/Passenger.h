@@ -209,5 +209,10 @@ int Passenger_compararXestado(void* paxUno, void* paxDos);
 ///
 int Passenger_compararXid(void* paxUno, void* paxDos);
 void menuSort();
+void menuInformes();
+int buscarPaxXTipo(void* this);
+int BuscarFirstClass(void* this);
+int BuscarExecutiveClass(void* this);
+int BuscarEconomyClass(void* this);
 
 #endif /* PASSENGER_H_ */
